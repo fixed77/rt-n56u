@@ -217,14 +217,8 @@ if [ -n "$CONFIG_MT7628_AP" ] ; then
 fi
 if [ -n "$CONFIG_MT7615_AP" ] ; then
 	dir_wifi_ver="4.4.2.1"
-	if [ "$CONFIG_FIRMWARE_WIFI_DRIVER" = "5.0.3.0" ] || \
-		[ "$CONFIG_FIRMWARE_WIFI2_DRIVER" = "5.0.3.0" ] || \
-		[ "$CONFIG_FIRMWARE_WIFI5_DRIVER" = "5.0.3.0" ]; then
+	if [ "$CONFIG_FIRMWARE_WIFI_DRIVER" = "5.0.3.0" ] || [ "$CONFIG_FIRMWARE_WIFI2_DRIVER" = "5.0.3.0" ] || [ "$CONFIG_FIRMWARE_WIFI5_DRIVER" = "5.0.3.0" ]; then
 		dir_wifi_ver="5.0.3.0"
-	elif [ "$CONFIG_FIRMWARE_WIFI_DRIVER" = "5.0.4.0" ] || \
-		[ "$CONFIG_FIRMWARE_WIFI2_DRIVER" = "5.0.4.0" ] || \
-		[ "$CONFIG_FIRMWARE_WIFI5_DRIVER" = "5.0.4.0" ]; then
-		dir_wifi_ver="5.0.4.0"
 	fi
 	cp -rfL "$dir_wifi_src/rtpci/$dir_wifi_ver/mt7615" "$dir_wifi_dst/"
 	cp -rfL "$dir_wifi_src/rtpci/$dir_wifi_ver/mt7615_ap" "$dir_wifi_dst/"
@@ -504,6 +498,22 @@ fi
 # 	func_disable_kernel_param "CONFIG_FW_LOADER"
 # 	func_disable_kernel_param "CONFIG_SOUND"
 # fi
+############################# ZRAM SUPPORT ############################
+#if [ "$CONFIG_FIRMWARE_INCLUDE_ZRAM" = "y" ] ; then
+	func_enable_kernel_param "CONFIG_SWAP"
+	func_enable_kernel_param "CONFIG_ZSMALLOC"
+	func_enable_kernel_param "CONFIG_MAX_SWAPFILES_SHIFT" "2"
+	func_enable_kernel_param "CONFIG_ZRAM"
+	func_enable_kernel_param "CONFIG_LZO_COMPRESS"
+	func_enable_kernel_param "CONFIG_LZO_DECOMPRESS"
+	func_enable_busybox_param "CONFIG_MKSWAP"
+	func_enable_busybox_param "CONFIG_SWAPON"
+	func_enable_busybox_param "CONFIG_SWAPOFF"
+	func_enable_busybox_param "CONFIG_FEATURE_SWAPON_DISCARD"
+	func_enable_busybox_param "CONFIG_FEATURE_VOLUMEID_LINUXSWAP"
+	func_enable_busybox_param "CONFIG_FEATURE_SWAPONOFF_LABEL"
+	func_enable_busybox_param "CONFIG_FEATURE_SWAPON_PRI"
+#fi
 #######################################################################
 if [ "$CONFIG_WITHOUT_KERNEL" != "y" ] ; then
 echo --------------------------MAKE-DEP--------------------------------

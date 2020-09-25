@@ -245,6 +245,7 @@ Adm_System_udpxy_wopen=Access to UDP-HTTP Proxy (udpxy) from WAN?
 Adm_System_udpxy_wport=UDP-HTTP Proxy (udpxy) Port from WAN:
 Adm_System_ntpp=NTP Synchronization Period:
 Adm_Access_WAN=Access to Router Services from WAN
+Adm_System_zram=Enable ZRAM?
 LAN_STP=Enable Spanning Tree Protocol (STP)?
 MAC_BlockHost=Block Access to Router Host?
 MAC_Time=Time Interval:

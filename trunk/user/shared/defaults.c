@@ -697,6 +697,10 @@ struct nvram_pair router_defaults[] = {
 	{ "crond_enable", "1" },
 	{ "crond_log", "0" },
 
+#if defined(SUPPORT_ZRAM)
+	{ "zram_enable", "0" },
+#endif
+
 #if defined(BOARD_N65U)
 	{ "inic_disable", "0" },
 #endif

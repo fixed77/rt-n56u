@@ -505,7 +505,7 @@
 			{"dhcp_staticnum_x", "", NULL, EVM_RESTART_DHCPD},
 			{"dnsmasq.hosts", "File", NULL, EVM_RESTART_DHCPD},
 			{"dnsmasq.dnsmasq.conf", "File", NULL, EVM_RESTART_DHCPD},
-			{"dnsmasq.dhcp.conf", "File", NULL, EVM_RESTART_DHCPD},
+			{"dnsmasq.dnsmasq.servers", "File", NULL, EVM_RESTART_DHCPD},
 			{"http_access", "", NULL, EVM_RESTART_HTTPD},
 			{"http_proto", "", NULL, EVM_RESTART_HTTPD},
 			{"http_lanport", "", NULL, EVM_RESTART_HTTPD},
@@ -521,6 +521,9 @@
 			{"sshd_enable", "", NULL, EVM_RESTART_SSHD},
 			{"wins_enable", "", NULL, EVM_RESTART_WINS|EVM_REAPPLY_VPNSVR},
 			{"lltd_enable", "", NULL, EVM_RESTART_LLTD},
+#if defined (SUPPORT_ZRAM)
+			{"zram_enable", "", NULL, EVM_RESTART_ZRAM},
+#endif
 			{"adsc_enable", "", NULL, EVM_RESTART_ADSC},
 			{"crond_enable", "", NULL, EVM_RESTART_CROND},
 			{"crond_log", "", NULL, EVM_RESTART_CROND},
@@ -1013,6 +1016,9 @@
 		{EVM_RESTART_TIME,		EVT_RESTART_TIME,		RCN_RESTART_TIME,	EVM_RESTART_CROND},
 		{EVM_RESTART_NTPC,		EVT_RESTART_NTPC,		RCN_RESTART_NTPC,	0},
 		{EVM_RESTART_SYSLOG,		EVT_RESTART_SYSLOG,		RCN_RESTART_SYSLOG,	0},
+#if defined(SUPPORT_ZRAM)
+		{EVM_RESTART_ZRAM,		EVT_RESTART_ZRAM,		RCN_RESTART_ZRAM,	0},
+#endif
 		{EVM_RESTART_LLTD,		EVT_RESTART_LLTD,		RCN_RESTART_LLTD,	0},
 		{EVM_RESTART_ADSC,		EVT_RESTART_ADSC,		RCN_RESTART_ADSC,	0},
 		{EVM_RESTART_CROND,		EVT_RESTART_CROND,		RCN_RESTART_CROND,	0},
